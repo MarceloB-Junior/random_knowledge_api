@@ -57,8 +57,8 @@ Antes de começar, certifique-se de que você atendeu aos seguintes requisitos:
 
     spring.datasource.url=jdbc:mysql://localhost:3306/random_knowledge_db
     spring.datasource.username=seu_usuario
-     spring.datasource.password=sua_senha
-spring.jpa.hibernate.ddl-auto=update
+    spring.datasource.password=sua_senha
+    spring.jpa.hibernate.ddl-auto=update
 
     spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
 
