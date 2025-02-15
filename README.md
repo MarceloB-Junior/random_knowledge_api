@@ -2,7 +2,7 @@
 
 ## Descrição
 
-A Random Knowledge API é uma aplicação RESTful que permite gerenciar e distribuir curiosidades e categorias de forma eficiente. Oferecendo funcionalidades CRUD completas.
+A Random Knowledge API é uma aplicação REST que permite gerenciar e distribuir curiosidades e categorias de forma eficiente. Oferecendo funcionalidades CRUD completas.
 
 Um dos principais recursos da API é a capacidade de fornecer curiosidades aleatórias, permitindo que os usuários descubram informações novas e interessantes de forma totalmente aleatória.
 
@@ -52,7 +52,7 @@ Antes de começar, certifique-se de que você atendeu aos seguintes requisitos:
 -  Crie um novo banco de dados no MySQL (por exemplo, `random_knowledge_db`).
 - Configure as credenciais do banco de dados no arquivo `application.properties`:
 
-```properties
+    ```properties
     spring.application.name=random_knowledge
 
     spring.datasource.url=jdbc:mysql://localhost:3306/random_knowledge_db
@@ -66,7 +66,7 @@ Antes de começar, certifique-se de que você atendeu aos seguintes requisitos:
     api.jwt.token.iss=random_knowledge_api
     api.jwt.token.expiration=1
     api.jwt.refresh.token.expiration=8
-```
+    ```
 3. **Instale as dependências**:
    ```bash
    mvn install
