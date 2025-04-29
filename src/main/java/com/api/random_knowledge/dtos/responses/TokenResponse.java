@@ -10,7 +10,7 @@ import java.time.Instant;
 @Builder
 public record TokenResponse(
         @NotBlank
-        @JsonProperty(value = "access_token",index = 1)
+        @JsonProperty(value = "access_token", index = 1)
         String accessToken,
         @NotBlank
         @JsonProperty(value = "refresh_token", index = 2)

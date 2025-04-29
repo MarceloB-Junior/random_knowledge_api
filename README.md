@@ -17,6 +17,7 @@ A autenticação é baseada em JWT, garantindo a segurança dos endpoints. A doc
   - [Executando a Aplicação](#executando-a-aplicação)
 -  [Endpoints da API](#endpoints-da-api)
 -  [Autenticação](#autenticação)
+-  [Testes Unitários](#testes-unitários)
 -  [Estrutura do Projeto](#estrutura-do-projeto)
 
 ## Tecnologias Utilizadas
@@ -89,7 +90,7 @@ A aplicação será iniciada em `http://localhost:8080`.
 
 *   **/users/sign-up**: Registra um novo usuário.
 *   **/auth/login**: Autentica um usuário e retorna tokens JWT.
-*   **/auth/refresh-token**: Obtém um novo token JWT usando um refresh token.
+*   **/auth/refresh-token**: Obtém um novo token JWT usando um refresh token (requer role USER).
 *   **/categories**: Cria uma nova categoria (requer role ADMIN).
 *   **/curiosities**: Cria uma nova curiosidade para uma categoria (requer role ADMIN).
 
@@ -120,6 +121,37 @@ A API utiliza autenticação baseada em JWT. Os usuários podem se registrar e o
 
 Um usuário administrador padrão de nome: `John Doe`, email: `john.doe@example.com` e senha: `pwd123` é configurado automaticamente na inicialização da API, caso ainda não exista nenhum usuário com esse email no banco de dados. Este usuário possui a role `ADMIN`, permitindo realizar operações de gerenciamento de categorias e curiosidades.
 
+## Testes Unitários
+
+Esta seção apresenta os testes unitários desenvolvidos para as classes de serviço `CategoryService` e `CuriosityService` da Random Knowledge API. Os testes garantem o correto funcionamento das operações de criação, leitura, verificação de existência e exclusão de categorias e curiosidades.
+
+### CategoryServiceTest
+
+Os testes da classe `CategoryServiceTest` verificam as funcionalidades relacionadas ao gerenciamento de categorias, incluindo criação, busca, verificação de existência e exclusão, garantindo que a lógica de negócio para categorias funcione corretamente.
+
+- **saveCategoryReturnsCategoryModel:** Verifica se uma categoria é salva corretamente e retorna o modelo salvo.
+- **findAllReturnsPageOfCategories:** Testa se a busca paginada retorna uma página com categorias.
+- **findByIdReturnsCategoryModelOptional:** Confirma que a busca por ID retorna uma categoria quando encontrada.
+- **findByIdReturnsEmptyOptional:** Garante que a busca por ID retorna vazio quando a categoria não existe.
+- **findCuriositiesByCategoryReturnsPageOfCuriosities:** Valida a busca paginada de curiosidades associadas a uma categoria.
+- **existsByNameReturnsTrue:** Testa se a verificação de existência pelo nome retorna verdadeiro quando a categoria existe.
+- **existsByNameReturnsFalse:** Testa se a verificação de existência pelo nome retorna falso quando a categoria não existe.
+- **deleteRemovesCategory:** Verifica se a exclusão de uma categoria é executada corretamente.
+
+### CuriosityServiceTest
+
+Os testes da classe `CuriosityServiceTest` validam as operações relacionadas ao gerenciamento de curiosidades, como criação, busca (inclusive aleatória), verificação de existência e exclusão, assegurando o correto funcionamento da lógica de negócio para curiosidades.
+
+- **saveCuriosityReturnsCuriosityModel:** Confirma que uma curiosidade é salva e retornada corretamente.
+- **findAllReturnsPageOfCuriosities:** Testa a busca paginada de curiosidades.
+- **findByIdReturnsCuriosityModelOptional:** Verifica se a busca por ID retorna uma curiosidade existente.
+- **findByIdReturnsEmptyOptional:** Garante que a busca por ID retorna vazio quando a curiosidade não existe.
+- **findRandomReturnsCuriosityOptional:** Testa se a busca por curiosidade aleatória retorna um resultado válido.
+- **existsByCuriosityAndCategoryReturnsTrue:** Verifica se a existência de curiosidade em uma categoria retorna verdadeiro.
+- **existsByCuriosityAndCategoryReturnsFalse:** Verifica se a existência de curiosidade em uma categoria retorna falso.
+- **deleteRemovesCuriosity:** Confirma que a exclusão de uma curiosidade é realizada corretamente.
+
+
 ## Estrutura do Projeto
 
 ```
@@ -144,6 +176,10 @@ random_knowledge/
 │   │   └── resources/
 │   │       └── application.properties
 │   └── test/
+│       └── java/
+│           └── com/
+│               └── api/
+│                   └── random_knowledge/
+│                       └── services/
 └── pom.xml
 ```
-

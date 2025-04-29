@@ -6,6 +6,7 @@ import com.api.random_knowledge.dtos.responses.TokenResponse;
 import com.api.random_knowledge.services.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -42,7 +43,8 @@ public class AuthenticationController {
 
     @Operation(
             summary="Refresh JWT Token",
-            description="Obtain a new JWT token using the refresh token"
+            description="Obtain a new JWT token using the refresh token",
+            security = @SecurityRequirement(name = "RandomKnowledgeSecurityScheme")
     )
     @ApiResponse(
             responseCode="200",
